@@ -30,8 +30,33 @@
 | `rules` | 放电规则（机器可读） |
 | `present7` ~ `present11` | (4.9) 五情形不可避免性证明 |
 
+### 构建与验证（本机 Ubuntu / gcc 15.2.0）
+
+- 90 年代 K&R C 与现代 gcc 不兼容（隐式声明、旧式函数定义报错），
+  以 `gcc -std=gnu90 -O2` 编译，不改动原始源码。
+- 生成的二进制 `reduce`、`discharge` 放 `rsst/code/`，不入库。
+
+#### reduce（可约性验证，论文 (3.2)）
+
+- 用法：`./reduce [构型文件]`，默认读 `unavoidable.conf`。
+- 方法（见源码 main）：对每个构型计算 `findangles`（环染色角度结构）→
+  `findlive`（初始可行染色集 C0）→ `testmatch`/`updatelive` 迭代
+  （由 Ci 推 C{i+1}）→ `checkcontract`（核验契约正确性）。
+- 响应：`Reducibility of 633 configurations verified`
+- 耗时：46.6 s（1997 年 Sun Sparc 20 约 3 小时）。
+
+#### discharge（放电与不可避免性验证，论文 (4.9)）
+
+- 用法：`./discharge <present文件> [<行号> <打印模式>]`；
+  运行时读取 `rules`（放电规则）与 `unavoidable.conf`（构型集）。
+- 响应（对 present7–present11 逐一执行）：
+
+```
+Total of 633 configurations.
+present7 verified.  …  present11 verified.
+```
+
 ### 待办
 
-- [ ] 下载 `fcdir/` 文档（`reduce.tex`/`discharge.tex` 的 ps、`unavoidable.ps.gz` 图解）到 `rsst/docs/`
 - [ ] 为 `rsst/` 添加来源与版权说明 README
 - [ ] 跑通 `reduce.c` / `discharge.c`，建立对验证代码的基本认识
