@@ -34,11 +34,15 @@ Robertson–Sanders–Seymour–Thomas 1997 年四色定理机器证明的原始
 
 ## 版权说明
 
-论文 [1] 正文称 "we are making the necessary programs and data available to
-the public for checking"，但原始发布未附显式许可证（90 年代学术惯例）。
-本目录转载仅供学术研究与验证目的，**保留作者署名**（Neil Robertson,
-Daniel P. Sanders, Paul Seymour, Robin Thomas），不声明为本项目自有代码。
-若需修改再分发，请自行确认许可状况。
+`reduce.c` 与 `discharge.c` 头部均载明：
+
+> Copyright 1995 by N. Robertson, D.P. Sanders, P.D. Seymour and R. Thomas.
+> Permission to use for the purpose of scholarly research is hereby granted.
+
+即明确授予**学术研究用途**的使用许可；论文 [1] 正文亦称 "we are making the
+necessary programs and data available to the public for checking"。
+本目录转载仅供学术研究与验证目的，**保留作者署名**，不声明为本项目自有代码。
+若需修改再分发或商用，请自行确认许可状况。
 
 论文正文（JCTB 70(1), 2-44，Elsevier 版权）不在本目录中，仅作引用：
 
