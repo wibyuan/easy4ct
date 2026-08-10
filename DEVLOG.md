@@ -56,7 +56,18 @@ Total of 633 configurations.
 present7 verified.  …  present11 verified.
 ```
 
-### 待办
+### 收尾（2026-08-09 晚）
 
-- [ ] 为 `rsst/` 添加来源与版权说明 README
-- [ ] 跑通 `reduce.c` / `discharge.c`，建立对验证代码的基本认识
+- 下载 `fcdir/` 文档至 `rsst/docs/`（`reduce.ps`/`discharge.ps`/`unavoidable.ps.gz`/`npfc.pdf`/`unavoidable.pdf`）。
+- 为 `rsst/` 添加 README（来源、文件清单、版权说明）。
+- `reduce`/`discharge` 编译产物与 `.et` 中间文件通过 `.gitignore` 忽略，不入库。
+- 修正 `rsst/README.md` 版权说明：源码头声明 "Permission to use for the purpose of scholarly research is hereby granted"。
+
+## 2026-08-10
+
+### 新增文件处置
+
+- 插图（30 张 PNG）从根目录 `assets/` 移入 `doc/figures/`；`doc/res.md` 的图片引用统一改为相对路径 `doc/figures/`（此前为 Windows 绝对路径，跨平台断链）。
+- 收录 RSST 相关 OCR 文本至 `rsst/docs/`：arXiv 1401.6481（可约性文档）、npfc 综述。
+- Windows `:Zone.Identifier` 下载标记文件：删除并加入 `.gitignore`（`*:Zone.Identifier`）。
+- 更新 README 目录结构（新增 `DEVLOG.md`、`rsst/`、`doc/figures/`）。
