@@ -50,7 +50,7 @@ easy4ct：基于启发式搜索的四色定理多样性证书开源生成器—�
   - 程序与数据目录：`http://people.math.gatech.edu/~thomas/OLDFTP/four/`（目录列表 403，需已知文件名直连）
   - 综述 PDF：`http://people.math.gatech.edu/~thomas/OLDFTP/fcdir/npfc.pdf`、`unavoidable.pdf`
 - 分工：用户负责逐个下载文件到仓库；助手负责定位、验证连通性、跑通与讲解代码。
-- 待决决策（按依赖顺序）：① 下载源确认 ② 落盘目录结构 ③ 构建/运行环境。
+- 已决决策（2026-08-09）：① 下载源——`thomas.math.gatech.edu/FC/ftpinfo.html` 官方清单页；② 落盘——`rsst/code/` + `rsst/docs/`；③ 构建——`gcc -std=gnu90 -O2`（不改动源码），产物不入库。
 
 ## 环境备注
 
