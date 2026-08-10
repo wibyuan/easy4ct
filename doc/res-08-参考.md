@@ -1,0 +1,11 @@
+# 参考
+
+1. [^](https://zhuanlan.zhihu.com/p/2009608385771873079/preview?comment=0&catalog=1#ref_1_0)实际上，Kempe 在尝试证明四色定理的时候，做了将图归约为极大平面图等价的操作，即保证每个面交界处都是三岔口，然而，非常吊诡的是，这对他的文章意义不是特别大，但是对后人的方法意义比较大；这里为了简化，就去掉了这部分逻辑，也方便我后续反例指出其逻辑错误
+2. [^](https://zhuanlan.zhihu.com/p/2009608385771873079/preview?comment=0&catalog=1#ref_2_0)Kempe, Alfred Bray. “On the Geographical Problem of the Four Colours.” American Journal of Mathematics 2 (1879): 193. https://doi.org/10.2307/2369235
+3. [^](https://zhuanlan.zhihu.com/p/2009608385771873079/preview?comment=0&catalog=1#ref_3_0)在 Kempe 的文章中，由于极大平面图的性质，仅需要处理第二种情况，目前看来，也许这是他采用极大平面图时有意义的简化之一
+4. [^](https://zhuanlan.zhihu.com/p/2009608385771873079/preview?comment=0&catalog=1#ref_4_0)Heawood, P.J.: Map Colour Theorem. Quart. 1. Math. 24, 332-338 (1890) 如果你要读这篇文章可以从下面这个链接进去往后读 7 页 https://babel.hathitrust.org/cgi/pt?id=inu.30000050138159&view=1up&seq=344
+5. [^](https://zhuanlan.zhihu.com/p/2009608385771873079/preview?comment=0&catalog=1#ref_5_0)在后面链接的 Fig18，需要注意 Heawood 也是面染色模型，其中 rgby 表示四种颜色，他的图比我大 https://babel.hathitrust.org/cgi/pt?id=inu.30000050138159&view=1up&seq=399
+6. [^](https://zhuanlan.zhihu.com/p/2009608385771873079/preview?comment=0&catalog=1#ref_6_0)Tait, P. G. (1880). Note on a theorem in geometry of position. Royal Society of Edinburgh. 想看原论文可以从后面的链接进入，向后翻 6 页 https://archive.org/details/scientificpapers01taituoft/page/408/mode/1up
+7. [^](https://zhuanlan.zhihu.com/p/2009608385771873079/preview?comment=0&catalog=1#ref_7_0)Birkhoff, George D. “The Reducibility of Maps.” American Journal of Mathematics 35, no. 2 (1913): 115–28. https://doi.org/10.2307/2370276
+8. [^](https://zhuanlan.zhihu.com/p/2009608385771873079/preview?comment=0&catalog=1#ref_8_0)目前我的检索结果仅仅表明当搜索算法被要求去寻找字典序最小的解时，存在直接的方法可以将其卡到指数级（见下一个引用）
+9. [^](https://zhuanlan.zhihu.com/p/2009608385771873079/preview?comment=0&catalog=1#ref_9_0)Samir Khuller, Vijay V. Vazirani, Planar graph coloring is not self-reducible, assuming P ≠ NP, Theoretical Computer Science, Volume 88, Issue 1, 1991, Pages 183-189, ISSN 0304-3975, https://doi.org/10.1016/0304-3975(91)90081-C
