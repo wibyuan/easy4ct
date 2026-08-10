@@ -65,12 +65,20 @@ $$\sum_{i=1}^{5}(\gamma_W(h_i)-d_{G(W)}(h_i)-1)=\sum_{i=1}^{5}(5-4-1)=0<2,$$
 2. 环尺寸 $\ge2$ 在论文中的一处明确用途是 (4.2) 证明（OCR 330 行）排除"$G(W)=T$"的情形——对二十面体，$G(W)$ 有 11 个顶点而 $T$ 有 12 个，该情形本就不可能，此用途在此类退化情形下不必要；
 3. (2.3)（每个内部 6 连通三角剖分含好配置）对二十面体成立——二十面体含有 633 构型之一。
 
-**对 Coq 形式化（Gonthier 2005）**：不受影响——形式化必须给出无歧义的 $\gamma$ 约定，Gonthier 选择的是自洽版本，验证的是正确内容。
+**对 Coq 形式化（Gonthier 2005）**：不受影响——形式化未采用 $\gamma$ 记账表述，而是整体绕开 cartwheel 概念（放电直接在完整 hypermap 上做 part fitting，见 §5 验证结论），验证的是正确内容。
 
-## 5. 验证途径
+## 5. 验证结论（2026-08-10，Gonthier Coq 代码 + 报告自述）
 
-决定性验证：Gonthier 2005《A computer-checked proof of the Four Colour Theorem》的 Coq 代码（GitHub fourcolor 项目）对 cartwheel/配置的定义。若其定义下二十面体 cartwheel 合法，则证明"隐含约定"说；若其显式排除，则证明"(4.1) 字面确实失效但形式化已修正表述"。两种情形下四色定理证明均成立。
+决定性验证：Gonthier《A computer-checked proof of the Four Colour Theorem》（HAL hal-04034866）与 rocq-community/fourcolor Coq 代码（本仓库 `fourcolor/` submodule，CeCILL-B）。
 
-## 6. 对项目的影响
+**判定树两分支均不精确适用——形式化整体绕开了 cartwheel 概念**：
 
-res-06a（顶点邻域的双圈结构）重写时，需显式处理此 edge case：按 RSST 字面定义，(4.1) 在正二十面体（及可能的帽子度 5 局部结构）上失效——科普文应如实呈现 RSST 字面并指出该例外，或明确限定 (4.1) 的适用范围（如排除正二十面体）。写作策略由作者决定。
+- 报告自述（放电一节）："using cartwheels would not give us the benefits of reusing well-known results. On the contrary, they would just introduce another layer of definitions and of correspondence lemmas, which were not really needed"；"we could do completely without the Birkhoff theorem, by showing directly that the mapping derived from a successful quiz check was automatically an embedding"。
+- 代码实证：无 $\gamma$、无自由补全、无 $\sum(\gamma-d-1)$ 型环尺寸算术；环是配置（part）自身轮廓上的简单圈，非退化条件 `proper_ring`（revsnip.v，至少两个面、非单边轨道）被剖分/嵌入机制实际使用；放电与 part fitting 直接定义在完整 hypermap（darts + 三置换 $e,n,f$）上；Birkhoff 定理仅在嵌入引理 `embed_full`（embed.v）的证明中用到；birkhoff.v 的轮辐环引理（`spoke_ring` 简单无弦、尺寸 = arity ≥ 5）在库中存在，但 `chordless_spoke_ring`/`min_arity` 不被 birkhoff.v 之外的文件使用。
+- 对二十面体：其对偶正十二面体的每个面都满足全部结构条件（轮辐五边形无弦、帽环轮廓 5 面、`proper_ring` 成立）；全库无 "icosa"，形式化无需排除、也未排除二十面体。
+
+**含义**：这不是"隐含约定"说的直接证实，而是更强的结论——RSST (4.1) 的 $\gamma$ 记账与"自由补全加环"表述是论文中间层（配置/放电导向层）自身的文字问题；形式化证明的是自洽的四色定理证明，其结构完全绕开该层。RSST 字面失效无害（§3）与形式化自洽成立（本节）两种情形下，四色定理证明均成立。
+
+## 6. 对项目的影响（2026-08-10 更新）
+
+res-06a 的"顶点邻域的双圈结构"是文章自身的干净推导（不涉及 $\gamma$ 记账），对二十面体同样成立，结构本身无需改动。(4.1) 的字面表述疏漏仅在文章明确转述 RSST 字面（如引述其配置定义）时才需显式处理——如实转述并注明例外、或引用 Gonthier 形式化（§5）佐证均可。写作策略由作者决定。
