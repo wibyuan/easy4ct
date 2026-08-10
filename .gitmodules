@@ -1,0 +1,3 @@
+[submodule "fourcolor"]
+	path = fourcolor
+	url = git@github.com:rocq-community/fourcolor.git
