@@ -32,6 +32,7 @@
 │   ├── README.md       # 来源、文件清单与版权说明
 │   ├── code/           # reduce.c / discharge.c / discharge.pas / 数据与证明
 │   └── docs/           # 文档、图解与 OCR 文本
+├── fourcolor/    # Gonthier Coq 形式化证明（submodule，CeCILL-B 许可）
 └── docs/         # 内部文档（.gitignore 忽略，开源前整体删除）
     └── target/   # 项目申请书、内部表单等（含个人信息）
 ```
@@ -42,6 +43,7 @@
 - `docs/`：内部资料，包含版权论文与个人信息，**不入库、开源前删除**。
 - `doc/papers/` 仅收录著作权已过期的公版论文；RSST 1997（《The four-colour theorem》, JCTB 70(1), 2-44）仅作引用，附 DOI 即可。
 - `rsst/`：RSST 验证引擎，源码头声明仅授学术研究用途，转载保留作者署名。
+- `fourcolor/`：rocq-community/fourcolor submodule（Gonthier Coq 形式化），CeCILL-B 许可，随仓库分发。
 
 ## 任务背景
 

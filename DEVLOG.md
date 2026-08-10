@@ -102,3 +102,13 @@ present7 verified.  …  present11 verified.
 - 分析全文落盘 `rsst/docs/RSST-cartwheel-γ-表述歧义分析.md`。
 - 待验证：Gonthier Coq 代码（决定性）；失效是否严格限于二十面体（帽子度 5 局部结构未完全排除）。
 - 对文章影响：`res-06a` 重写需显式处理该 edge case（写作策略待定）。
+
+### Gonthier 形式化 submodule 与 cartwheel 判定（2026-08-10 晚）
+
+- 版权处置：用户放入根目录的两篇 Gonthier 文章 OCR（Notices AMS 2008《Formal Proof—The Four-Color Theorem》，© AMS 不可再分发；HAL 2023 报告 hal-04034866）移入 `docs/`（gitignore 忽略、开源前删除），与 Elsevier 版 RSST OCR 同类处理。
+- 添加 `fourcolor/` submodule（git@github.com:rocq-community/fourcolor.git，CeCILL-B 许可），README 目录树同步更新。
+- 决定性验证完成——在 Coq 代码中检索 cartwheel/环/配置定义（`birkhoff.v`、`revsnip.v`、`redpart.v`）：
+  - Gonthier 形式化**没有 RSST 式的 γ 记账**：配置（part）精确匹配（`redpart`），环是简单圈（`proper_ring`：非空且非单边轨道），环尺寸 = 轮廓尺寸，不存在 $\sum(\gamma-d-1)$ 型自由补全算术，故不可能出现"环尺寸 0"；
+  - (4.1) 的内容对应物在 `birkhoff.v` Section SpokeRing：极小反例中每个面 x 的轮辐环 `spoke_ring` 是简单环（`scycle_spoke_ring`）、无弦（`chordless_spoke_ring`）、环盘恰为 x 的邻面（`diskF_spoke_ring`）、尺寸 = arity ≥ 5（`size_spoke_ring`/`min_arity`）；放电侧（present5~11）依赖该轮毂结构；
+  - 全库无 "icosa"：形式化未排除、也不需要排除二十面体。对偶意义下正十二面体每个面都是合法 cartwheel（轮辐五边形环简单无弦、帽环轮廓尺寸 5 ≥ 2）——按 §5 判定树，**"隐含约定"说得到决定性支持**：RSST (4.1) 的数学内容（Birkhoff 双圈结构，含二十面体）自洽成立，字面失败仅是 RSST 自由补全记账（在帽圈之外另数一环）的表述瑕疵。
+- 对文章影响不变：`res-06a` 重写时可引用此结论——RSST 字面按原文如实呈现、以 Gonthier 形式化佐证自洽约定；具体写作策略仍由作者决定。
