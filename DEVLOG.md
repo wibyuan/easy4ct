@@ -107,8 +107,9 @@ present7 verified.  …  present11 verified.
 
 - 版权处置：用户放入根目录的两篇 Gonthier 文章 OCR（Notices AMS 2008《Formal Proof—The Four-Color Theorem》，© AMS 不可再分发；HAL 2023 报告 hal-04034866）移入 `docs/`（gitignore 忽略、开源前删除），与 Elsevier 版 RSST OCR 同类处理。
 - 添加 `fourcolor/` submodule（git@github.com:rocq-community/fourcolor.git，CeCILL-B 许可），README 目录树同步更新。
-- 决定性验证完成——在 Coq 代码中检索 cartwheel/环/配置定义（`birkhoff.v`、`revsnip.v`、`redpart.v`）：
-  - Gonthier 形式化**没有 RSST 式的 γ 记账**：配置（part）精确匹配（`redpart`），环是简单圈（`proper_ring`：非空且非单边轨道），环尺寸 = 轮廓尺寸，不存在 $\sum(\gamma-d-1)$ 型自由补全算术，故不可能出现"环尺寸 0"；
-  - (4.1) 的内容对应物在 `birkhoff.v` Section SpokeRing：极小反例中每个面 x 的轮辐环 `spoke_ring` 是简单环（`scycle_spoke_ring`）、无弦（`chordless_spoke_ring`）、环盘恰为 x 的邻面（`diskF_spoke_ring`）、尺寸 = arity ≥ 5（`size_spoke_ring`/`min_arity`）；放电侧（present5~11）依赖该轮毂结构；
-  - 全库无 "icosa"：形式化未排除、也不需要排除二十面体。对偶意义下正十二面体每个面都是合法 cartwheel（轮辐五边形环简单无弦、帽环轮廓尺寸 5 ≥ 2）——按 §5 判定树，**"隐含约定"说得到决定性支持**：RSST (4.1) 的数学内容（Birkhoff 双圈结构，含二十面体）自洽成立，字面失败仅是 RSST 自由补全记账（在帽圈之外另数一环）的表述瑕疵。
-- 对文章影响不变：`res-06a` 重写时可引用此结论——RSST 字面按原文如实呈现、以 Gonthier 形式化佐证自洽约定；具体写作策略仍由作者决定。
+- 决定性验证完成——在 Coq 代码中检索 cartwheel/环/配置定义（`birkhoff.v`、`revsnip.v`、`redpart.v`），并核对报告自述（HAL 第 786 行附近）：
+  - Gonthier 形式化**整体绕开 cartwheel 概念**：报告自述 "using cartwheels ... would just introduce another layer of definitions and of correspondence lemmas, which were not really needed"、"we could do completely without the Birkhoff theorem"；
+  - 无 RSST 式 γ 记账：配置（part）精确匹配（`redpart`），环是简单圈（`proper_ring`：非空且非单边轨道），环尺寸 = 轮廓尺寸，不存在 $\sum(\gamma-d-1)$ 型自由补全算术；
+  - 放电与 part fitting 直接定义在完整 hypermap（darts + 三置换 $e,n,f$）上；Birkhoff 定理仅在嵌入引理 `embed_full`（embed.v）证明中使用；birkhoff.v 的轮辐环引理（`spoke_ring` 简单无弦、尺寸 = arity ≥ 5）在库中存在，但 `chordless_spoke_ring`/`min_arity` 不被 birkhoff.v 之外的文件使用；
+  - 全库无 "icosa"：对偶意义下正十二面体每个面都满足全部结构条件（轮辐五边形无弦、帽环轮廓 5 面），二十面体无需排除、也未被排除——判定树两分支均不精确适用，形式化"绕开"比"隐含约定"说更强。
+- 对文章影响：res-06a 的双圈结构推导是文章自身的干净表述（无 γ 记账），对二十面体同样成立，结构无需改动；(4.1) 字面仅在文章转述 RSST 字面时需显式处理（如实转述并注明例外、或引形式化佐证），写作策略由作者决定。
