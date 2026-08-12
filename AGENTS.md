@@ -9,6 +9,7 @@ easy4ct：基于启发式搜索的四色定理多样性证书开源生成器—�
 ## 目录约定
 
 - `doc/`：开源后保留的公开文档（`res.md` 文章主产物、`doc/papers/` 四篇公版论文 OCR：Kempe 1879 / Tait 1880 / Heawood 1890 / Birkhoff 1913）。
+- `doc/figures/`：文章插图统一存放处。文件名须无空格（Obsidian 粘贴产生的 `Pasted image 2026*.png` 须重命名为 `image-2026*.png` 再入库）；文章内引用统一为相对路径 `![...](figures/xxx.png)`。
 - `docs/`：内部文档（项目申请书、个人信息、RSST 1997 OCR——Elsevier 版权，不可分发），已被 `.gitignore` 忽略、不进入版本控制；开源前须整体删除。
 - `DEVLOG.md`：项目开发日志（关键决策与进展，随时间线追加）。
 - `rsst/`：RSST 1997 验证代码（学术用途转载，见其 README）。
