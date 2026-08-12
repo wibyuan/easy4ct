@@ -10,6 +10,9 @@ easy4ct：基于启发式搜索的四色定理多样性证书开源生成器—�
 
 - `doc/`：开源后保留的公开文档（`res.md` 文章主产物、`doc/papers/` 四篇公版论文 OCR：Kempe 1879 / Tait 1880 / Heawood 1890 / Birkhoff 1913）。
 - `docs/`：内部文档（项目申请书、个人信息、RSST 1997 OCR——Elsevier 版权，不可分发），已被 `.gitignore` 忽略、不进入版本控制；开源前须整体删除。
+- `DEVLOG.md`：项目开发日志（关键决策与进展，随时间线追加）。
+- `rsst/`：RSST 1997 验证代码（学术用途转载，见其 README）。
+- `fourcolor/`：Gonthier Coq 形式化证明 submodule（CeCILL-B 许可）。
 - `README.md` 记录完整约定，修改目录结构时同步更新。
 
 ## 协作规则（用户明确要求，必须遵守）
@@ -57,7 +60,7 @@ easy4ct：基于启发式搜索的四色定理多样性证书开源生成器—�
 - 现行地址（2017 更新）：`https://people.math.gatech.edu/~thomas/FC/fourcolor.html`（301 → `https://thomas.math.gatech.edu/FC/fourcolor.html`）
   - 程序与数据目录：`http://people.math.gatech.edu/~thomas/OLDFTP/four/`（目录列表 403，需已知文件名直连）
   - 综述 PDF：`http://people.math.gatech.edu/~thomas/OLDFTP/fcdir/npfc.pdf`、`unavoidable.pdf`
-- 分工：用户负责逐个下载文件到仓库；助手负责定位、验证连通性、跑通与讲解代码。
+- 分工：用户负责逐个下载文件到仓库；助手负责定位、验证连通性、跑通与讲解代码（下载、构建、验证已于 2026-08-09 全部完成，详见 DEVLOG；构建产物不入库）。
 - 已决决策（2026-08-09）：① 下载源——`thomas.math.gatech.edu/FC/ftpinfo.html` 官方清单页；② 落盘——`rsst/code/` + `rsst/docs/`；③ 构建——`gcc -std=gnu90 -O2`（不改动源码），产物不入库。
 
 ## 环境备注
