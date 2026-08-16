@@ -32,21 +32,31 @@ $w$ 的邻居排布只需扫一遍邻接表，外圈检查同样只涉及 $w$ �
 
 **证明：**
 
-这是有限情形检查（Birkhoff）。4 圈上的相似类共 $14$ 个（$3^4=81$ 个染色在颜色置换群作用下的轨道数，由 Burnside 引理：恒等置换固定全部 $81$ 个，三个对换各固定常色染色一个，两个 $3$-循环无不动点，得 $(81+3\cdot1+2\cdot0)/6=14$），逐一检查"一致集对 θ-适配封闭"的条件即可穷尽所有可能；等价地，与第 5 部分 4-分离圈可约性证明中的方案分类同构（那里把环上染色方案归约为三类，正是这里的类结构）。我们转述 RSST 的陈述而不逐类展开：该检查是机械的，任何非空一致集若不包含上述四个并集之一，取其成员按 θ-适配逐条推演即得矛盾。$\blacksquare$
+先建立一条在下面两个分类中都起作用的事实：一致集是相似类的并。设 $\mathcal C$ 一致，$\kappa\in\mathcal C$，$\pi$ 是颜色置换，$\kappa'=\pi\circ\kappa$。对 $\kappa'$ 与任意 $\theta'$，令 $\theta=\pi^{-1}(\theta')$；$\mathcal C$ 一致给出匹配 $M$，使 $\kappa$ $\theta$-适配 $M$ 且 $\mathcal C$ 含一切 $\theta$-适配 $M$ 的染色。由 $\pi$ 是双射，$\{e:\kappa(e)\ne\theta\}=\{e:\kappa'(e)\ne\theta'\}$ 且 $\kappa(e)=\kappa(f)\iff\kappa'(e)=\kappa'(f)$，故 $\kappa'$ $\theta'$-适配同一个 $M$，而"$\theta'$-适配 $M$"与"$\theta$-适配 $M$"是同一族染色，已全部属于 $\mathcal C$。$\kappa'$ 对每个 $\theta'$ 都满足闭包条件，故 $\kappa'\in\mathcal C$。
+
+由此，一切一致集都是相似类的并，分类检查只需在相似类上做。4 圈上的相似类共 $14$ 个（$3^4=81$ 个染色在颜色置换群作用下的轨道数，由 Burnside 引理：恒等置换固定全部 $81$ 个，三个对换各固定常色染色一个，两个 $3$-循环无不动点，得 $(81+3\cdot1+2\cdot0)/6=14$）。$14$ 个相似类的非空并共 $2^{14}-1$ 个，逐一按定义（一致集）核验"是否一致"与"是否包含上述四个并集之一"——这是有限情形穷举，核验脚本 verify-consistent4.py 随仓库公开（rsst/docs/ 目录），运行结果：$16383$ 个候选中恰有 $9$ 个非空一致集，全部包含四个并集之一。这与第 5 部分 4-分离圈可约性证明中的方案分类一致（那里把环上染色方案归约为三类，正是这里的类结构）。$\blacksquare$
 
 > **定理（5 圈一致集分类）**
 >
-> 设 $R$ 是 5 圈，边按序为 $e_1,\dots,e_5$。对 $1\le i\ne j\le5$，$A_{ij}$ 如上；令 $\mathcal C_i=A_{ij}\cup A_{ik}\cup A_{jk}$，其中 $e_j,e_k$ 是与 $e_i$ 共端的两条边；令 $\mathcal D_i=A_{ac}\cup A_{ad}\cup A_{bc}\cup A_{bd}$，其中 $e_a,e_b,e_c,e_d$ 是除 $e_i$ 外的四条边按序；令 $\mathcal E=A_{12}\cup A_{23}\cup A_{34}\cup A_{45}\cup A_{15}$。则任何与 $\mathcal E$ 相交的非空一致集都包含 $\mathcal C_1,\dots,\mathcal C_5,\mathcal D_1,\dots,\mathcal D_5,\mathcal E$ 之一。
+> 设 $R$ 是 5 圈，边按序为 $e_1,\dots,e_5$。对 $1\le i\ne j\le5$，$A_{ij}$ 如上；令 $\mathcal C_i=A_{ij}\cup A_{ik}\cup A_{jk}$，其中 $e_j,e_k$ 是与 $e_i$ 共端的两条边；令 $\mathcal D_i=A_{ac}\cup A_{ad}\cup A_{bc}\cup A_{bd}$，其中 $e_a,e_b,e_c,e_d$ 是除 $e_i$ 外的四条边，按圈序从 $e_{i+1}$ 起数（下标模 $5$）；令 $\mathcal E=A_{12}\cup A_{23}\cup A_{34}\cup A_{45}\cup A_{15}$。则任何与 $\mathcal E$ 相交的非空一致集都包含 $\mathcal C_1,\dots,\mathcal C_5,\mathcal D_1,\dots,\mathcal D_5,\mathcal E$ 之一。
 
 **证明：**
 
-先建立两条子断言。
+先建立两条子断言。论证中反复用"一致集是相似类的并"（定理（4 圈一致集分类）证明中的第一段）把"某染色属于 $\mathcal C$"升级为"整个类属于 $\mathcal C$"；也用有符号匹配集定义的条件 (ii)（删去一对匹配边后另一对的边同分量）来排除配对候选。
 
-其一，若 $A_{12}\subseteq\mathcal C$，则 $\mathcal C$ 包含 $A_{13},A_{15}$ 之一与 $A_{23},A_{25}$ 之一。取 $\kappa=(-1,1,0,0,0)\in\mathcal C$。$\mathcal C$ 一致，故存在有符号匹配 $M$ 使 $\kappa$ $(-1)$-适配 $M$，且 $\mathcal C$ 含一切 $(-1)$-适配 $M$ 的染色。$\kappa$ 的非 $(-1)$ 边是 $e_2,e_4,e_5$（取值为 $1,0,0$），故 $M$ 的匹配并恰为 $\{e_2,e_4,e_5\}$，$M$ 只能是 $\{(\{e_2,e_3\},-1),(\{e_4,e_5\},1)\}$ 或 $\{(\{e_2,e_5\},-1),(\{e_3,e_4\},1)\}$（$e_3$ 的值必须等于 $e_2$ 或 $e_5$ 的值以符合 $\mu$ 规则——$\kappa(e_2)=1$、$\kappa(e_3)=0$、$\kappa(e_5)=0$）。前者中 $(-1,0,1,0,0)$ 也 $(-1)$-适配 $M$，故 $\in\mathcal C$，$A_{13}\subseteq\mathcal C$；后者中 $(-1,0,0,0,1)\in\mathcal C$，$A_{15}\subseteq\mathcal C$。对 $1$-适配的匹配做同样的论证，得 $A_{23},A_{25}$ 之一的结论。
+其一，若 $A_{12}\subseteq\mathcal C$，则 $\mathcal C$ 包含 $A_{13},A_{15}$ 之一与 $A_{23},A_{25}$ 之一。取 $\kappa=(-1,1,0,0,0)\in\mathcal C$。$\mathcal C$ 一致，故存在有符号匹配 $M$ 使 $\kappa$ $(-1)$-适配 $M$，且 $\mathcal C$ 含一切 $(-1)$-适配 $M$ 的染色。$\kappa$ 的非 $(-1)$ 边是 $e_2,e_3,e_4,e_5$（取值 $1,0,0,0$），故 $E(M)=\{e_2,e_3,e_4,e_5\}$，$M$ 含两对匹配。按匹配对的划分有三种候选：$\{\{e_2,e_3\},\{e_4,e_5\}\}$、$\{\{e_2,e_4\},\{e_3,e_5\}\}$、$\{\{e_2,e_5\},\{e_3,e_4\}\}$；第二种被条件 (ii) 排除：删去 $e_3,e_5$ 后，$e_2$ 与 $e_4$ 不在同一个连通分量（剩余边 $e_1,e_2,e_4$ 中 $e_4$ 是孤立边）。第一、三种给出候选
 
-其二，若 $A_{13}\subseteq\mathcal C$，则 $\mathcal C$ 包含 $A_{23},A_{35}$ 之一。论证同上（RSST 注明"证明类似"，此处不再展开——其结构与子断言一完全相同：取 $\kappa=(0,-1,1,0,0)$，枚举其可适配的匹配）。
+$$M_1=\{(\{e_2,e_3\},-1),(\{e_4,e_5\},1)\},\qquad M_3=\{(\{e_2,e_5\},-1),(\{e_3,e_4\},1)\},$$
 
-现在设 $\mathcal C$ 与 $\mathcal E$ 相交：某 $A_{12},A_{23},A_{34},A_{45},A_{15}$ 包含于 $\mathcal C$。若五个都包含，则 $\mathcal E\subseteq\mathcal C$，得证。否则由对称性设 $A_{12}\subseteq\mathcal C$ 而 $A_{23}\not\subseteq\mathcal C$。由子断言一，$A_{25}\subseteq\mathcal C$。若 $A_{15}\subseteq\mathcal C$，则 $\mathcal C_1=A_{12}\cup A_{25}\cup A_{15}\subseteq\mathcal C$，得证。否则 $A_{15}\not\subseteq\mathcal C$，子断言一给出 $A_{13}\subseteq\mathcal C$，子断言二给出 $A_{35}\subseteq\mathcal C$，于是 $\mathcal D_4=A_{13}\cup A_{15}\cup A_{23}\cup A_{25}\subseteq\mathcal C$（$A_{13},A_{35},A_{25}\subseteq\mathcal C$ 而 $A_{23},A_{15}$ 均含于 $\mathcal D_4$——由 $\mathcal D_4$ 的构成直接核对），得证。$\blacksquare$
+符号由"$\kappa(e)=\kappa(f)\iff\mu=1$"逐对确定（$1\ne0$ 取 $-1$，$0=0$ 取 $1$）。若 $\mathcal C$ 给出的匹配是 $M_1$，则 $(-1,0,1,0,0)$ 也 $(-1)$-适配 $M_1$（非匹配边 $e_1=-1$；$\{e_2,e_3\}$ 取 $0,1$ 互异；$\{e_4,e_5\}$ 取 $0,0$ 相同），故 $\in\mathcal C$，而它与 $A_{13}$ 的代表 $(1,0,-1,0,0)$ 相似，$A_{13}\subseteq\mathcal C$。若给出的匹配是 $M_3$，则 $(-1,0,0,0,1)$ $(-1)$-适配 $M_3$，$\in\mathcal C$，$A_{15}\subseteq\mathcal C$。对 $1$-适配的匹配做同样的论证：$E(M)=\{e_1,e_3,e_4,e_5\}$，配对候选 $\{\{e_1,e_3\},\{e_4,e_5\}\}$ 与 $\{\{e_1,e_5\},\{e_3,e_4\}\}$（第三种 $\{\{e_1,e_4\},\{e_3,e_5\}\}$ 同样被条件 (ii) 排除），前者给出 $(0,1,-1,0,0)\in\mathcal C$ 而 $A_{23}\subseteq\mathcal C$，后者给出 $(0,1,0,0,-1)\in\mathcal C$ 而 $A_{25}\subseteq\mathcal C$。
+
+其二，若 $A_{13}\subseteq\mathcal C$，则 $\mathcal C$ 包含 $A_{23},A_{35}$ 之一。取 $\kappa=(1,0,-1,0,0)\in\mathcal C$（$A_{13}$ 的代表）。$\mathcal C$ 一致，故存在 $M$ 使 $\kappa$ $(-1)$-适配 $M$ 且 $\mathcal C$ 含一切 $(-1)$-适配 $M$ 的染色。$\kappa$ 的非 $(-1)$ 边是 $e_1,e_2,e_4,e_5$（$e_3=-1$），配对候选为 $\{\{e_1,e_2\},\{e_4,e_5\}\}$ 与 $\{\{e_1,e_5\},\{e_2,e_4\}\}$（第三种 $\{\{e_1,e_4\},\{e_2,e_5\}\}$ 被条件 (ii) 排除：删去 $e_2,e_5$ 后 $e_1$ 与 $e_4$ 不同分量），符号由 $\kappa$ 的取值确定：
+
+$$M_1=\{(\{e_1,e_2\},-1),(\{e_4,e_5\},1)\},\qquad M_3=\{(\{e_1,e_5\},-1),(\{e_2,e_4\},1)\}.$$
+
+若给出的匹配是 $M_1$，则 $(0,1,-1,0,0)$ $(-1)$-适配 $M_1$（非匹配边 $e_3=-1$；$\{e_1,e_2\}$ 取 $0,1$ 互异；$\{e_4,e_5\}$ 取 $0,0$ 相同），故 $\in\mathcal C$，而它是 $A_{23}$ 的代表，$A_{23}\subseteq\mathcal C$。若给出的匹配是 $M_3$，则 $(0,0,-1,0,1)$ $(-1)$-适配 $M_3$（非匹配边 $e_3=-1$；$\{e_1,e_5\}$ 取 $0,1$ 互异；$\{e_2,e_4\}$ 取 $0,0$ 相同），故 $\in\mathcal C$，而它与 $A_{35}$ 的代表 $(0,0,1,0,-1)$ 相似（置换 $1$ 与 $-1$），$A_{35}\subseteq\mathcal C$。
+
+现在设 $\mathcal C$ 与 $\mathcal E$ 相交：某 $A_{12},A_{23},A_{34},A_{45},A_{15}$ 包含于 $\mathcal C$。若五个都包含，则 $\mathcal E\subseteq\mathcal C$，得证。否则由对称性设 $A_{12}\subseteq\mathcal C$ 而 $A_{23}\not\subseteq\mathcal C$。由子断言一，$A_{25}\subseteq\mathcal C$。若 $A_{15}\subseteq\mathcal C$，则 $\mathcal C_1=A_{12}\cup A_{25}\cup A_{15}\subseteq\mathcal C$，得证。否则 $A_{15}\not\subseteq\mathcal C$，子断言一给出 $A_{13}\subseteq\mathcal C$；子断言二给出 $A_{23}$ 或 $A_{35}\subseteq\mathcal C$，$A_{23}\not\subseteq\mathcal C$ 已设，故 $A_{35}\subseteq\mathcal C$。按 $\mathcal D_4$ 的构成：除 $e_4$ 外按圈序从 $e_5$ 起数为 $e_5,e_1,e_2,e_3$，故 $\mathcal D_4=A_{52}\cup A_{53}\cup A_{12}\cup A_{13}=A_{25}\cup A_{35}\cup A_{12}\cup A_{13}$；四项 $A_{12},A_{13},A_{25},A_{35}$ 均含于 $\mathcal C$，$\mathcal D_4\subseteq\mathcal C$，得证。$\blacksquare$
 
 ## 主算法
 
