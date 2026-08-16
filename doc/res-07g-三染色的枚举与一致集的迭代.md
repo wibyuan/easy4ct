@@ -62,6 +62,6 @@ $\mathcal C_{i+1}\subseteq\mathcal C_i$ 与 $\mathcal M_{i+1}\subseteq\mathcal M
 
 reduce.c 与本节内容的对应如下。strip 与 ininterval 实现边编号；findlive 实现 $\mathcal C_0$ 的枚举（含 record 的码计算）；testmatch、augment、checkreality 与 stillreal 实现 $\mathcal M$ 的迭代——testmatch 生成全部平衡有符号匹配（matchweight 表预计算每条匹配边的码贡献，parity 变量核对平衡性），checkreality 对每个匹配枚举全部"选择组合"并检查其 θ-适配染色是否都在 live 中，stillreal 负责逐码查表并把 $\theta$ 标记写回 live 的位 2/4/8；updatelive 实现 $\mathcal C_{i+1}$：live 的位 1 表示"在 $\mathcal C_i$"，位 2、4、8 分别表示"被 $\theta=0,\pm1$ 标记过"，三标记齐备（live 值为 15）的染色保留。real 数组的每个位对应一个平衡有符号匹配，迭代中 $\mathcal M_i$ 递减即位的清除。整个迭代在 live 数组上就地完成：程序输出 "D-reducible" 或 "Not D-reducible"，对应 $\mathcal C'=\varnothing$ 与否。
 
-需要说明的是，程序在迭代中并不区分染色与码——上一节定理（相似类唯一规范形）保证码与相似类一一对应，而一致集对相似封闭（颜色置换保持 θ-适配），所以对码操作就是对相似类操作。
+需要说明的是，程序在迭代中并不区分染色与码——上一节定理（相似类唯一规范形）保证码与相似类一一对应，而一致集对相似封闭：设 $\mathcal C$ 一致、$\kappa\in\mathcal C$、$\pi$ 是颜色置换，$\kappa'=\pi\circ\kappa$；对 $\kappa'$ 与任意 $\theta'$，令 $\theta=\pi^{-1}(\theta')$，$\mathcal C$ 一致给出匹配 $M$ 使 $\kappa$ $\theta$-适配 $M$ 且 $\mathcal C$ 含一切 $\theta$-适配 $M$ 的染色；由 $\pi$ 是双射，$\{e:\kappa(e)\ne\theta\}=\{e:\kappa'(e)\ne\theta'\}$ 且 $\kappa(e)=\kappa(f)\iff\kappa'(e)=\kappa'(f)$，故 $\kappa'$ $\theta'$-适配同一个 $M$，而"$\theta'$-适配 $M$"与"$\theta$-适配 $M$"是同一族染色，已全部属于 $\mathcal C$。于是 $\kappa'\in\mathcal C$，一致集是相似类的并，对码操作就是对相似类操作。
 
 $\mathcal C'$ 到手之后，还剩下 contract 的验证：枚举 $S$ 的模 $X$ 三染色，检查其环限制是否都落在 $\mathcal C'$ 之外。这是下一节的内容。
